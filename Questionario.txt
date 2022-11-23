@@ -1,0 +1,9 @@
+Respostas:
+
+1- Foi utilizado o editor Visual Studio Code.
+
+2- Sim, para criar a lógica do método para retornar o valor do caractere comprimido de acordo com a árvore. 
+
+3- Não.
+
+4- Sobre o compressão, mesmo em um nível básico consegui tirar bastantes duvidas que tinha a respeito do funcionamento de compactação.

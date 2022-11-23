@@ -1,27 +1,31 @@
 import java.util.Scanner;
 
+import CharTable.CharTable;
+import HuffmanTree.HuffmanTree;
+
 public class CompressionTest {
     Scanner scanner = new Scanner(System.in);
-    CharTable charTable = new CharTable();
+    CharTable charTable;
     HuffmanTree huffTree;
 
 
     public void start() {
         boolean runProgram = true;
         while (runProgram) {
-            System.out.println("1 – Comprimir texto \n0 – Sair\n------------------------");
+            System.out.println("\n1 – Comprimir texto \n0 – Sair\n------------------------");
             int option = scanner.nextInt();
 
             switch (option) {
                 case 1:
                     System.out.println("Escreva a palavra: ");
                     String text = scanner.next();
+                    System.out.println("------------------------\n");
 
                     compresstext(text);
                     String binaryText = convertToBinary(text);
-                    System.out.println("BINARIO(ASCII) - " + binaryText + " com " + countBytes(binaryText) );
+                    System.out.println("BINARIO(ASCII) - " + binaryText + " com " + countBytes(binaryText)  + " bytes");
                     String compressedText = convertToCompress(text);
-                    System.out.println("HUFFMAN - " + compressedText + " com " + countBytes(compressedText) );
+                    System.out.println("HUFFMAN - " + compressedText + " com " + countBytes(compressedText)  + " bytes");
                     double compressRate = (double)countBytes(compressedText) / countBytes(binaryText);
                     System.out.println("Taxa de compressão: " + compressRate);
                     System.out.println("------------------------");
@@ -38,8 +42,11 @@ public class CompressionTest {
     }
 
     public void compresstext(String string) {
+        CharTable newCharTable = new CharTable();
+        this.charTable = newCharTable;
 
         System.out.println("A palavra é: " + string + " e tem " + countBytes(string) + " bytes");
+        System.out.println("\nArvore Huffman:");
         countCharFrequency(string);
         toBinary(string);
         createHuffmanTree(string);
@@ -51,7 +58,8 @@ public class CompressionTest {
         countCharFrequency(string);
         toBinary(string);
 
-        huffTree = new HuffmanTree(charTable);
+        HuffmanTree newHuffTree = new HuffmanTree(charTable);
+        this.huffTree = newHuffTree;
         toCompressedCode(string);
     }
 
